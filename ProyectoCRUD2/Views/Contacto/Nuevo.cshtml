@@ -1,0 +1,40 @@
+﻿@model ProyectoCRUD2.Models.Contacto
+
+@{
+    ViewBag.Title = "Nuevo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="margin-top:30px">
+    <div class="col-sm-12">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4>Nuevo Contacto</h4>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form action="@Url.Action("Nuevo","Contacto")" method="post">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" name="Nombre" />
+                </div>
+                <div class="form-group">
+                    <label>Apellido</label>
+                    <input type="text" class="form-control" name="Apellido" />
+                </div>
+                <div class="form-group">
+                    <label>Telefono</label>
+                    <input type="number" class="form-control" name="Telefono" />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="Email" placeholder="exmple@gmail.com" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Crear</button>
+                <a class="btn btn-warning" href="@Url.Action("Inicio","Contacto")">Volver</a>
+            </form>
+        </div>
+    </div>
+</div>
+
