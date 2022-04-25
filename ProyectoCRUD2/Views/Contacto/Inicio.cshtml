@@ -36,7 +36,7 @@
                             <th>@item.Email</th>
                             <th>
                                 <a class="btn btn-success btn-sm" href="@Url.Action("Editar","Contacto", new { idContacto = item.IdContacto})">Editar</a>
-                                <a class="btn btn-danger btn-sm" href="#">Eliminar</a>
+                                <a class="btn btn-danger btn-sm" href="@Url.Action("Eliminar","Contacto", new { idContacto = item.IdContacto})">Eliminar</a>
                             </th>
                         </tr>
                         }

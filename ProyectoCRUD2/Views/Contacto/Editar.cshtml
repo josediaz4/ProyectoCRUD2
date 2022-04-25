@@ -14,7 +14,7 @@
         </div>
         <div class="panel-body">
             <form action="@Url.Action("Editar","Contacto")" method="post">
-                <input type="hidden" class="form-control" name="Nombre" value="@Html.DisplayTextFor(x=>x.IdContacto)" />
+                <input type="hidden" class="form-control" name="IdContacto" value="@Html.DisplayTextFor(x=>x.IdContacto)" />
                 <div class="form-group">
                     <label>Nombre</label>
                     <input type="text" class="form-control" name="Nombre" value="@Html.DisplayTextFor(x=>x.Nombre)" />
