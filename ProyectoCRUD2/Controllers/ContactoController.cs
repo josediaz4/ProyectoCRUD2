@@ -5,7 +5,6 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ProyectoCRUD2.Controllers
@@ -72,6 +71,47 @@ namespace ProyectoCRUD2.Controllers
             Contacto oContacto = oLista.Where(x => x.IdContacto == idContacto).FirstOrDefault();
 
             return View(oContacto);
+        }
+        [HttpPost]
+        public ActionResult Editar(Contacto oContacto)
+        {
+            using (SqlConnection oConexion = new SqlConnection(conexion))
+            {
+                SqlCommand cmd = new SqlCommand("sp_Editar", oConexion);
+                cmd.Parameters.AddWithValue("IdContacto", oContacto.IdContacto);
+                cmd.Parameters.AddWithValue("Nombre", oContacto.Nombre);
+                cmd.Parameters.AddWithValue("Apellido", oContacto.Apellido);
+                cmd.Parameters.AddWithValue("Telefono", oContacto.Telefono);
+                cmd.Parameters.AddWithValue("Email", oContacto.Email);
+                cmd.CommandType = CommandType.StoredProcedure;
+                oConexion.Open();
+                cmd.ExecuteNonQuery();
+            }
+            return RedirectToAction("Inicio", "Contacto");
+        }
+        public ActionResult Eliminar(int? idContacto)
+        {
+            if (idContacto == null)
+            {
+                return RedirectToAction("Inicio", "Contacto");
+            }
+            Contacto oContacto = oLista.Where(x => x.IdContacto == idContacto).FirstOrDefault();
+
+            return View(oContacto);
+
+        }
+        [HttpPost]
+        public ActionResult Eliminar(int idContacto)
+        {
+            using (SqlConnection oConexion = new SqlConnection(conexion) )
+            {
+                SqlCommand cmd = new SqlCommand("sp_Eliminar", oConexion);
+                cmd.Parameters.AddWithValue("IdContacto", idContacto);
+                cmd.CommandType = CommandType.StoredProcedure;
+                oConexion.Open();
+                cmd.ExecuteNonQuery();
+            }
+            return RedirectToAction("Inicio", "Contacto");
         }
     }
 }
